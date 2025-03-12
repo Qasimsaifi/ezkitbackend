@@ -102,15 +102,13 @@ exports.googleAuth = (req, res) => {
     { expiresIn: "265d" }
   );
 
-  // Set cookie in all environments
   res.cookie("token", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "none",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     maxAge: 3600000 * 24 * 100,
     path: "/",
   });
-
   // Redirect to the profile page
   res.redirect("http://localhost:3000/profile");
 };
