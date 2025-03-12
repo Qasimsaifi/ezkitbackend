@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const Product = require("./models/Product");
 
 // MongoDB connection URL - adjust according to your setup
-const mongoURI = "mongodb://localhost:27017/ezkitlabs";
+const mongoURI =
+  "mongodb+srv://vercel-admin-user:root@cluster0.honqvwn.mongodb.net/ezkitlabs?retryWrites=true&w=majority&appName=Cluster0";
 
 // Product data expanded to 20+ items
 const productsToInsert = [
