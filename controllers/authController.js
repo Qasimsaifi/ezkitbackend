@@ -106,7 +106,7 @@ exports.googleAuth = (req, res) => {
   res.cookie("token", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production", // Secure only in production
-    sameSite: "lax", // Use "lax" for better compatibility
+    sameSite: "none", // Use "lax" for better compatibility
     maxAge: 3600000 * 24 * 100, // 1 hour
     path: "/", // Ensure the cookie is accessible across the entire site
   });
