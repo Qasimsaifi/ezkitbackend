@@ -105,10 +105,10 @@ exports.googleAuth = (req, res) => {
   // Set cookie in all environments
   res.cookie("token", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production", // Secure only in production
-    sameSite: "none", // Use "lax" for better compatibility
-    maxAge: 3600000 * 24 * 100, // 1 hour
-    path: "/", // Ensure the cookie is accessible across the entire site
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    maxAge: 3600000 * 24 * 100,
+    path: "/",
   });
 
   // Redirect to the profile page
