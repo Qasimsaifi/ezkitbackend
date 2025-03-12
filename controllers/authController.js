@@ -103,11 +103,11 @@ exports.googleAuth = (req, res) => {
   );
 
   res.cookie("token", token, {
-    httpOnly: false,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-    maxAge: 3600000 * 24 * 100,
-    path: "/",
+    httpOnly: true, // Prevent client-side access (optional)
+    secure: true, // Required for cross-origin cookies
+    sameSite: "none", // Required for cross-origin cookies
+    maxAge: 3600000 * 24 * 100, // Expiration time
+    path: "/", // Accessible across the entire site
   });
   // Redirect to the profile page
   res.redirect("http://localhost:3000/profile");
