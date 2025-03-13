@@ -105,7 +105,7 @@ exports.googleAuth = (req, res) => {
   res.cookie("token", token, {
     httpOnly: true, // Prevent client-side access (optional)
     secure: true, // Required for cross-origin cookies
-    sameSite: "none", // Required for cross-origin cookies
+    sameSite: "lax", // Required for cross-origin cookies
     maxAge: 3600000 * 24 * 100, // Expiration time
     path: "/", // Accessible across the entire site
   });
