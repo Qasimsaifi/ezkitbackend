@@ -110,7 +110,7 @@ exports.googleAuth = (req, res) => {
     path: "/", // Accessible across the entire site
   });
   // Redirect to the profile page
-  res.redirect("http://localhost:3000/profile");
+  res.redirect(`${process.env.FRONTEND_URL}/profile`);
 };
 
 // Logout a user
