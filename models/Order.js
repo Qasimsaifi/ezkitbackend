@@ -25,6 +25,15 @@ const orderSchema = new mongoose.Schema({
       },
     },
   ],
+  subtotal: {
+    type: Number,
+    required: true,
+  },
+  deliveryCharge: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
   totalAmount: {
     type: Number,
     required: true,
@@ -35,10 +44,60 @@ const orderSchema = new mongoose.Schema({
     default: "pending",
   },
   shippingAddress: {
-    address: { type: String, required: true },
-    city: { type: String, required: true },
-    postalCode: { type: String, required: true },
-    country: { type: String, required: true },
+    addressType: {
+      type: String,
+      enum: ["home", "work", "other"],
+      default: "home",
+    },
+    addressLine1: {
+      type: String,
+      required: true,
+    },
+    addressLine2: {
+      type: String,
+    },
+    landmark: {
+      type: String,
+    },
+    city: {
+      type: String,
+      required: true,
+    },
+    district: {
+      type: String,
+    },
+    state: {
+      type: String,
+      required: true,
+    },
+    pincode: {
+      type: String,
+      required: true,
+      match: [/^[1-9][0-9]{5}$/, "Please enter a valid 6-digit Indian pincode"],
+    },
+    country: {
+      type: String,
+      default: "India",
+    },
+  },
+  // Razorpay related fields
+  razorpayOrderId: {
+    type: String,
+  },
+  paymentId: {
+    type: String,
+  },
+  paymentStatus: {
+    type: String,
+    enum: ["pending", "completed", "failed", "refunded"],
+    default: "pending",
+  },
+  refundId: {
+    type: String,
+  },
+  refundStatus: {
+    type: String,
+    enum: ["processing", "completed", "failed"],
   },
   createdAt: {
     type: Date,
